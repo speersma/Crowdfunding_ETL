@@ -1,16 +1,21 @@
+--follow table order creation when uploading data to tables
+
+DROP TABLE IF EXISTS campaign;
 DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS subcategory;
+DROP TABLE IF EXISTS contacts;
+
 CREATE TABLE category(
 	category_id	varchar(10) PRIMARY KEY NOT NULL,
 	category varchar(30)
 );
 
-DROP TABLE IF EXISTS subcategory;
+
 CREATE TABLE subcategory(
 	subcategory_id	varchar(10) PRIMARY KEY NOT NULL,
 	subcategory varchar(30)
 );
 
-DROP TABLE IF EXISTS contacts;
 CREATE TABLE contacts(
 	contact_id SERIAL PRIMARY KEY NOT NULL,
 	first_name varchar(20),
@@ -18,8 +23,6 @@ CREATE TABLE contacts(
 	email varchar(50)
 );
 
-
-DROP TABLE IF EXISTS campaign;
 CREATE TABLE campaign(
 	cf_id SERIAL PRIMARY KEY NOT NULL,	
 	contact_id	INT,
@@ -27,11 +30,11 @@ CREATE TABLE campaign(
 	description	varchar(200),
 	goal NUMERIC(10, 2),
 	pledged	NUMERIC(10, 2),
-	outcome varchar(20) CHECK (outcome IN ('successful', 'failed')),
+	outcome varchar(20) CHECK (outcome IN ('failed', 'successful', 'live', 'canceled')),
 	backers_count INT,	
 	country varchar(5),
 	currency varchar(5),
-	launched_date DATE,
+	launch_date DATE,
 	end_date DATE,
 	category_id varchar(10),
 	subcategory_id varchar(30),
@@ -39,5 +42,4 @@ CREATE TABLE campaign(
 	FOREIGN KEY (category_id) REFERENCES category (category_id),
 	FOREIGN KEY (subcategory_id) REFERENCES subcategory (subcategory_id)
 );
-
 
