@@ -2,13 +2,13 @@ DROP TABLE IF EXISTS category;
 CREATE TABLE category(
 	category_id	varchar(10) PRIMARY KEY NOT NULL,
 	category varchar(30)
-)
+);
 
 DROP TABLE IF EXISTS subcategory;
 CREATE TABLE subcategory(
 	subcategory_id	varchar(10) PRIMARY KEY NOT NULL,
 	subcategory varchar(30)
-)
+);
 
 DROP TABLE IF EXISTS contacts;
 CREATE TABLE contacts(
@@ -16,7 +16,7 @@ CREATE TABLE contacts(
 	first_name varchar(20),
 	last_name varchar(20),
 	email varchar(50)
-)
+);
 
 
 DROP TABLE IF EXISTS campaign;
@@ -27,9 +27,10 @@ CREATE TABLE campaign(
 	description	varchar(200),
 	goal NUMERIC(10, 2),
 	pledged	NUMERIC(10, 2),
-	outcome	ENUM('successful', 'failed'),
+	outcome varchar(20) CHECK (outcome IN ('successful', 'failed')),
 	backers_count INT,	
-	country	currency varchar(5),
+	country varchar(5),
+	currency varchar(5),
 	launched_date DATE,
 	end_date DATE,
 	category_id varchar(10),
@@ -37,6 +38,6 @@ CREATE TABLE campaign(
 	FOREIGN KEY (contact_id) REFERENCES contacts (contact_id),
 	FOREIGN KEY (category_id) REFERENCES category (category_id),
 	FOREIGN KEY (subcategory_id) REFERENCES subcategory (subcategory_id)
-)
+);
 
 
