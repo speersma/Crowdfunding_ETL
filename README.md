@@ -23,7 +23,7 @@ Given two .xlsx files containing synthetic crowdfunding data, students were aske
 2. contacts.xlsc
     - Extracted data from the .xlsx file and separated the fields into distinct columns. Formatted data such that it could be linked to the dataframes created from the crowdfundign.xlsx.
 
-Throughtout this phase, four dataframes were created and extracted into csv files to be later loaded into an SQL dataframes. 
+Throughtout this phase, four dataframes were created and extracted into csv files to be later loaded into an SQL dataframes. These csv files are located in the outputs folder. 
 
 ### Load
 
